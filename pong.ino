@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include "LedControl.h"
 LedControl lc=LedControl(12,11,10,1);
+int aPin = A0;
 
 
 //All bat parameters are in arrays, where the first parameter is bat 0 and the secodn is bat 1
@@ -14,10 +15,10 @@ int score[]={0,0};
 
 
 //Position of the ball as X,Y
-int ballPos[]={3,4};
+int ballPos[]={random(4,4),random(2,5),random(4,6)};
 
 //Direction of the ball as dX,dY
-int ballVec[]={1,1};
+int ballVec[]={random(1,1),random(2,2),random(5,5)};
 
 //Useful function for formatting strings
 void p(char *fmt, ... ){
