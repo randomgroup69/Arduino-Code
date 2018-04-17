@@ -1,10 +1,11 @@
 #include <stdarg.h>
 #include "LedControl.h"
-LedControl lc=LedControl(12,11,10,1);
-int aPin = A0;
 
+LedControl lc=LedControl(12,11,10,1);
 
 //All bat parameters are in arrays, where the first parameter is bat 0 and the secodn is bat 1
+int aPin = A1
+int bPin = A2
 int batSize[]={3,3};
 int batPos[]={0,0};
 int height=8; //Height (and width) of the matrix
@@ -38,6 +39,10 @@ int moveBat(int batNum, int dir){
    //Function returns -1 if the bat hit an edge and couldn't move the full distance
    //   0 on success
    //   1 when given an incorrect value for dir
+   if(value<498) {dir = -1;}
+   if(value>600) {dir = 1;}
+   if(value<=507 && value>=498) {dir = 0}
+        
    if(dir==-1 || dir==1){
      batPos[batNum]+=dir;
      if(batPos[batNum]<0){
@@ -119,6 +124,8 @@ void setup() {
   /* and clear the display */
   lc.clearDisplay(0);
   Serial.begin(9600);
+  pinMode(aPin, INPUT);
+  pinMode(bPin, INPUT);
 }
 
 
